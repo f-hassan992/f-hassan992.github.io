@@ -317,6 +317,35 @@ footer strong { color: var(--terracotta); }
   section { padding: 1.5rem 1.2rem 2.5rem; }
 }
 
+.preview-work4 {
+  width: 100%; max-width: 200px;
+  background: linear-gradient(145deg,#1A6FD4,#0A4A9C);
+  border-radius: 13px; padding: 1.3rem 1rem; text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.pop-brand { font-family: Georgia,serif; font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 0.25rem; }
+.pop-flavor { font-size: 0.62rem; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.85); text-transform: uppercase; margin-bottom: 0.7rem; }
+.pop-tags { display: flex; justify-content: center; gap: 0.3rem; flex-wrap: wrap; }
+.pop-tag { background: #3B2D7A; color: rgba(255,255,255,0.8); font-size: 0.55rem; font-weight: 600; padding: 0.2rem 0.4rem; border-radius: 3px; }
+
+.preview-aisha {
+  width: 100%; max-width: 220px;
+  background: linear-gradient(145deg,#B8B4A8,#9C9890);
+  border-radius: 12px; padding: 2rem 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.aisha-inner { text-align: center; }
+.aisha-logo-wrap {
+  width: 52px; height: 52px; margin: 0 auto 0.7rem;
+  background: rgba(255,255,255,0.18);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+}
+.aisha-a { font-family: Georgia,serif; font-size: 1.5rem; font-weight: 700; color: white; }
+.aisha-title { font-family: Georgia,serif; font-size: 0.8rem; color: rgba(255,255,255,0.92); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1.6; }
+
 /* ---------- Responsive — Mobile (480px) ---------- */
 @media (max-width: 480px) {
   .page-hero { padding: 2rem 1rem 1.2rem; }
