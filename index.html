@@ -7,127 +7,278 @@
   <link rel="stylesheet" href="style.css" />
   <style>
 
-    /* ---- About strip ---- */
-    .about-strip { background: var(--surface); border-bottom: 1px solid var(--border); }
-    .about-inner {
-      max-width: 1060px; margin: 0 auto;
-      padding: 3rem 2rem;
-      display: grid; grid-template-columns: 1fr 1.8fr;
-      gap: 2.5rem; align-items: center;
+    /* ======= About Me strip at top ======= */
+    .about-strip {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--mid-gray);
     }
+    .about-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 3.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    /* Left: name + role block */
     .about-identity h1 {
       font-family: var(--font-display);
       font-size: clamp(1.9rem, 4vw, 2.8rem);
-      font-weight: 400; line-height: 1.2;
-      color: var(--text-main); margin-bottom: 0.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
     }
-    .about-identity h1 em { font-style: italic; color: var(--terracotta); }
-    .role-line {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.1rem;
+    .about-identity h1 em {
+      font-style: italic;
+      color: var(--electric);
     }
-    .contact-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .about-identity .role-line {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .about-identity .contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
     .chip {
-      font-size: 0.78rem; color: var(--text-sub);
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 50px; padding: 0.28rem 0.85rem;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      border-radius: 50px;
+      padding: 0.3rem 0.9rem;
     }
-    .about-text p { font-size: 0.92rem; color: var(--text-sub); line-height: 1.85; }
-    .about-text p + p { margin-top: 0.9rem; }
-    .about-text strong { color: var(--text-main); font-weight: 600; }
 
-    /* ---- Resume layout ---- */
-    .resume-layout { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; align-items: start; }
-    .sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 1.2rem; }
+    /* Right: about text */
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      line-height: 1.85;
+    }
+    .about-text p + p {
+      margin-top: 0.9rem;
+    }
+    .about-text strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ======= Main resume layout ======= */
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 1fr 2.2fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* Left sidebar */
+    .sidebar {
+      position: sticky;
+      top: 84px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
     .sidebar-block {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 1.3rem;
-      box-shadow: var(--shadow-sm);
+      background: var(--off-white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
     }
+
     .sidebar-block h3 {
-      font-size: 0.66rem; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--text-muted);
-      margin-bottom: 0.9rem; padding-bottom: 0.55rem;
-      border-bottom: 1px solid var(--border);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--mid-gray);
     }
-    .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .lang-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .lang-list li { display: flex; justify-content: space-between; font-size: 0.84rem; }
-    .lang-name { color: var(--text-main); font-weight: 500; }
-    .lang-level { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: var(--teal); }
 
-    /* ---- Skill bars ---- */
-    .skill-bar-wrap { margin-bottom: 0.85rem; }
-    .skill-bar-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.3rem; color: var(--text-sub); }
-    .skill-bar-track { height: 5px; background: var(--border); border-radius: 5px; overflow: hidden; }
-    .skill-bar-fill { height: 100%; border-radius: 5px; background: var(--grad-accent); width: 0; transition: width 1.1s cubic-bezier(0.4,0,0.2,1); }
+    /* Skills tags in sidebar */
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
 
-    /* ---- Timeline ---- */
-    .timeline { position: relative; padding-left: 1.4rem; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 0; width: 1px; background: var(--border); }
-    .timeline-item { position: relative; padding-bottom: 2rem; }
+    /* Languages list */
+    .lang-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .lang-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .lang-list .lang-name { color: var(--text-main); font-weight: 500; }
+    .lang-level {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--electric);
+    }
+
+    /* ======= Timeline (right column) ======= */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    /* Vertical line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 0;
+      width: 1px;
+      background: var(--mid-gray);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.2rem;
+    }
     .timeline-item:last-child { padding-bottom: 0; }
+
+    /* Dot on the line */
     .timeline-item::before {
-      content: ''; position: absolute; left: -1.48rem; top: 7px;
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--white); border: 2px solid var(--terracotta);
+      content: '';
+      position: absolute;
+      left: -1.54rem;
+      top: 7px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--electric);
+      box-shadow: 0 0 0 3px rgba(114,38,255,0.1);
     }
-    .t-date { font-family: var(--font-code); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-    .t-title { font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.12rem; }
-    .t-org { font-size: 0.82rem; color: var(--terracotta); margin-bottom: 0.55rem; font-weight: 500; }
-    .t-desc { font-size: 0.84rem; color: var(--text-sub); line-height: 1.75; }
-    .t-desc ul { list-style: none; margin-top: 0.35rem; display: flex; flex-direction: column; gap: 0.22rem; }
-    .t-desc ul li::before { content: '— '; color: var(--border-dark); }
 
-    /* ---- Passion note ---- */
+    .t-date {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .t-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.15rem;
+    }
+    .t-org {
+      font-size: 0.83rem;
+      color: var(--electric);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+    .t-desc {
+      font-size: 0.86rem;
+      color: var(--text-sub);
+      line-height: 1.75;
+    }
+    .t-desc ul {
+      list-style: none;
+      margin-top: 0.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .t-desc ul li::before {
+      content: '- ';
+      color: var(--text-muted);
+    }
+
+    /* Passion note block */
     .passion-note {
-      background: rgba(157,196,192,0.12); border: 1px solid rgba(107,163,160,0.25);
-      border-left: 3px solid var(--teal); border-radius: var(--radius);
-      padding: 1rem 1.2rem; font-size: 0.86rem; color: var(--text-sub);
-      line-height: 1.75; margin-top: 0.5rem;
+      background: linear-gradient(135deg, rgba(114,38,255,0.05), rgba(11,188,184,0.04));
+      border: 1px solid rgba(114,38,255,0.15);
+      border-left: 3px solid var(--electric);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
+      font-size: 0.87rem;
+      color: var(--text-sub);
+      line-height: 1.75;
+      margin-top: 0.5rem;
     }
-    .passion-note strong { color: var(--teal); }
+    .passion-note strong { color: var(--electric); }
 
-    /* ---- Portfolio grid ---- */
-    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-bottom: 0.9rem; }
-    .port-img { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: var(--transition); display: block; }
-    .port-img:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .port-img img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
+    /* ======= Skill bars ======= */
+    .skill-bar-wrap { margin-bottom: 0.9rem; }
+    .skill-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.83rem;
+      margin-bottom: 0.35rem;
+      color: var(--text-sub);
+    }
+    .skill-bar-track {
+      height: 5px;
+      background: var(--mid-gray);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      background: var(--grad-accent);
+      width: 0;
+      transition: width 1.1s cubic-bezier(0.4,0,0.2,1);
+    }
 
-    /* ---- Responsive ---- */
+    /* ======= Responsive ======= */
     @media (max-width: 768px) {
-      .about-inner { grid-template-columns: 1fr; padding: 2rem 1.2rem; gap: 1.5rem; }
-      .resume-layout { grid-template-columns: 1fr; }
+      .about-inner {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.5rem;
+        gap: 1.5rem;
+      }
+      .resume-layout {
+        grid-template-columns: 1fr;
+      }
       .sidebar { position: static; }
-      .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 400px) {
-      .portfolio-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
     <a class="nav-logo" href="index.html">Fayza <span>Hassan</span></a>
-    <button class="hamburger" aria-label="Open menu">
+    <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
       <li><a href="index.html">Resume</a></li>
       <li><a href="hobby.html">Design</a></li>
       <li><a href="html-cheatsheet.html">HTML Guide</a></li>
-      <li><a href="design-to-code.html">Design to Code</a></li>
     </ul>
   </nav>
 
   <div class="page-wrapper">
 
-    <!-- About -->
+    <!-- ===== About Me strip ===== -->
     <div class="about-strip">
       <div class="about-inner">
+
         <div class="about-identity animate-in">
-          <p class="role-line">Graphic Designer &amp; Developer in Training</p>
+          <p class="role-line">Graphic Designer & Developer in Training</p>
           <h1>Fayza<br><em>Hassan</em></h1>
           <div class="contact-chips">
             <span class="chip">Calgary, AB</span>
@@ -135,140 +286,214 @@
             <span class="chip">Software Development</span>
           </div>
         </div>
+
         <div class="about-text animate-in">
-          <p>I have been working as a <strong>graphic designer since 2019</strong> — drawn to the creative field from an early age, shaped by a father who nurtured both my curiosity for art and technology. Design, to me, has always been more than aesthetics; it is a way to communicate, to solve, and to leave something meaningful behind.</p>
-          <p>In 2026, I took a deliberate step into <strong>software development</strong> — not to leave design behind, but to complete it. My broader goal is to build things that are genuinely useful: to be a person who is a <strong>blessing to herself and to those around her</strong>, and to contribute to the world in ways that are lasting and purposeful.</p>
+          <p>
+            I have been working as a <strong>graphic designer since 2019</strong> — drawn to
+            the creative field from an early age, shaped by a father who nurtured both my curiosity
+            for art and technology. Design, to me, has always been more than aesthetics; it is
+            a way to communicate, to solve, and to leave something meaningful behind.
+          </p>
+          <p>
+            In 2026, I took a deliberate step into <strong>software development</strong> — not to
+            leave design behind, but to complete it. I believe that combining the creative and the
+            technical opens doors that neither can unlock alone. My broader goal is to build things
+            that are genuinely useful: to be a person who is a <strong>blessing to herself and to those
+            around her</strong>, and to contribute to the world in ways that are lasting and purposeful.
+          </p>
         </div>
+
       </div>
     </div>
 
-    <!-- Resume -->
+    <!-- ===== Main Resume ===== -->
     <section>
       <div class="resume-layout">
 
-        <!-- Sidebar -->
+        <!-- LEFT SIDEBAR -->
         <aside class="sidebar">
+
+          <!-- Technical Skills -->
           <div class="sidebar-block animate-in" id="skill-bars">
             <h3>Skills</h3>
+
             <div class="skill-bar-wrap">
-              <div class="skill-bar-label"><span>Graphic Design</span><span>90%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+              <div class="skill-bar-label">
+                <span>Graphic Design</span><span>90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="90"></div>
+              </div>
             </div>
+
             <div class="skill-bar-wrap">
-              <div class="skill-bar-label"><span>Adobe Suite</span><span>85%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+              <div class="skill-bar-label">
+                <span>Adobe Suite</span><span>85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="85"></div>
+              </div>
             </div>
+
             <div class="skill-bar-wrap">
-              <div class="skill-bar-label"><span>HTML / CSS</span><span>75%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+              <div class="skill-bar-label">
+                <span>HTML / CSS</span><span>75%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="75"></div>
+              </div>
             </div>
+
             <div class="skill-bar-wrap">
-              <div class="skill-bar-label"><span>C++ / SQL</span><span>65%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+              <div class="skill-bar-label">
+                <span>C++ / SQL</span><span>65%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="65"></div>
+              </div>
             </div>
           </div>
 
+          <!-- Tools -->
           <div class="sidebar-block animate-in">
             <h3>Tools</h3>
             <div class="skills-wrap">
-              <span class="tag">Illustrator</span><span class="tag">Photoshop</span>
-              <span class="tag">Figma</span><span class="tag">Canva</span>
-              <span class="tag">VS Code</span><span class="tag">Git</span>
+              <span class="tag">Illustrator</span>
+              <span class="tag">Photoshop</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Canva</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Git</span>
               <span class="tag">SQL Server</span>
             </div>
           </div>
 
+          <!-- Languages -->
           <div class="sidebar-block animate-in">
             <h3>Languages</h3>
             <ul class="lang-list">
-              <li><span class="lang-name">Arabic</span><span class="lang-level">Native</span></li>
-              <li><span class="lang-name">Oromo</span><span class="lang-level">Native</span></li>
-              <li><span class="lang-name">English</span><span class="lang-level">Fluent</span></li>
+              <li>
+                <span class="lang-name">Arabic</span>
+                <span class="lang-level">Native</span>
+              </li>
+              <li>
+                <span class="lang-name">Oromo</span>
+                <span class="lang-level">Native</span>
+              </li>
+              <li>
+                <span class="lang-name">English</span>
+                <span class="lang-level">Fluent</span>
+              </li>
             </ul>
           </div>
+
         </aside>
 
-        <!-- Main -->
+        <!-- RIGHT MAIN CONTENT -->
         <main>
+
+          <!-- Education -->
           <div class="section-label">Education</div>
+
           <div class="timeline">
             <div class="timeline-item animate-in">
               <div class="t-date">2026 — 2027</div>
               <div class="t-title">Software Development Diploma</div>
               <div class="t-org">Bow Valley College, Calgary</div>
-              <div class="t-desc"><ul>
-                <li>C++ Programming — pointers, recursion, file I/O</li>
-                <li>Database Design — SQL, ERD, normalization</li>
-                <li>Web Development — HTML, CSS, JavaScript</li>
-                <li>Linear Algebra and Team Collaboration</li>
-              </ul></div>
+              <div class="t-desc">
+                <ul>
+                  <li>C++ Programming — pointers, recursion, file I/O</li>
+                  <li>Database Design — SQL, ERD, normalization</li>
+                  <li>Web Development — HTML, CSS, JavaScript</li>
+                  <li>Linear Algebra and Team Collaboration</li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          <div class="section-label" style="margin-top:2.2rem;">Experience</div>
+          <!-- Experience -->
+          <div class="section-label" style="margin-top:2.5rem;">Experience</div>
+
           <div class="timeline">
+
             <div class="timeline-item animate-in">
               <div class="t-date">2019 — 2025</div>
               <div class="t-title">Graphic Designer</div>
               <div class="t-org">Freelance</div>
-              <div class="t-desc"><ul>
-                <li>Designed visual identities, branding materials, and print work</li>
-                <li>Developed logos, social media content, and marketing assets</li>
-                <li>Managed client relationships from concept to final delivery</li>
-              </ul></div>
+              <div class="t-desc">
+                <ul>
+                  <li>Designed visual identities, branding materials, and print work</li>
+                  <li>Developed logos, social media content, and marketing assets</li>
+                  <li>Managed client relationships from concept to final delivery</li>
+                </ul>
+              </div>
             </div>
+
             <div class="timeline-item animate-in">
               <div class="t-date">2020 — 2025</div>
               <div class="t-title">Graphic Design Studio Owner</div>
               <div class="t-org">Independent — Global Clients</div>
-              <div class="t-desc"><ul>
-                <li>Ran an independent design business serving clients across multiple countries</li>
-                <li>Handled project scoping, pricing, and delivery independently</li>
-                <li>Built long-term client relationships through quality and consistency</li>
-              </ul></div>
+              <div class="t-desc">
+                <ul>
+                  <li>Ran an independent design business serving clients across multiple countries</li>
+                  <li>Handled project scoping, pricing, and delivery independently</li>
+                  <li>Built long-term client relationships through quality and consistency</li>
+                </ul>
+              </div>
             </div>
+
             <div class="timeline-item animate-in">
               <div class="t-date">2021 — 2024</div>
               <div class="t-title">Graphic Design Content Creator</div>
               <div class="t-org">Digital Platforms</div>
-              <div class="t-desc"><ul>
-                <li>Produced educational and inspirational content about graphic design</li>
-                <li>Built an audience around design tips, process videos, and tutorials</li>
-              </ul></div>
+              <div class="t-desc">
+                <ul>
+                  <li>Produced educational and inspirational content about graphic design</li>
+                  <li>Built an audience around design tips, process videos, and tutorials</li>
+                  <li>Strengthened communication and teaching skills through content work</li>
+                </ul>
+              </div>
             </div>
+
           </div>
 
+          <!-- Passion note -->
           <div class="passion-note animate-in">
-            I am excited to be adding a <strong>programming path</strong> to my journey — merging design thinking with technical skill to build experiences that are both beautiful and functional.
+            I am excited to be adding a <strong>programming path</strong> to my journey soon —
+            merging design thinking with technical skill to build experiences that are
+            both beautiful and functional.
           </div>
 
-          <div class="section-label" style="margin-top:2.2rem;">Projects</div>
+          <!-- Projects -->
+          <div class="section-label" style="margin-top:2.5rem;">Projects</div>
+
           <div class="card animate-in">
             <div class="t-date">2026</div>
             <div class="t-title" style="margin-top:0.3rem;">BVC SaSeSe — Mobile App Concept</div>
-            <div class="t-org" style="margin-top:0.15rem; font-size:0.82rem; color:var(--text-sub);">Group Project · Bow Valley College</div>
-            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.75; margin-top:0.65rem;">A concept mobile app for Bow Valley College students — featuring a peer-to-peer textbook marketplace, an indoor campus navigation map, and a Smart Sync Calendar. Contributed to visual design and the presentation deck.</p>
-            <div style="margin-top:0.75rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
-              <span class="tag">UI/UX</span><span class="tag">Figma</span><span class="tag">Team Project</span>
+            <div class="t-org" style="margin-top:0.2rem; font-size:0.83rem; color:var(--text-sub);">Group Project · Bow Valley College</div>
+            <p style="font-size:0.86rem; color:var(--text-sub); line-height:1.75; margin-top:0.7rem;">
+              A concept mobile app for Bow Valley College students — featuring a peer-to-peer
+              textbook marketplace, an indoor campus navigation map, and a Smart Sync Calendar.
+              Contributed to visual design and the presentation deck.
+            </p>
+            <div style="margin-top:0.8rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+              <span class="tag">UI/UX</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Team Project</span>
             </div>
           </div>
 
-          <div class="section-label" style="margin-top:2.2rem;">Portfolio Highlights</div>
-          <div class="portfolio-grid">
-            <a href="hobby.html" class="port-img"><img src="images/work1.jpg" alt="Crumble and Flake branding" loading="lazy"></a>
-            <a href="hobby.html" class="port-img"><img src="images/work4.jpg" alt="Poppify packaging" loading="lazy"></a>
-            <a href="hobby.html" class="port-img"><img src="images/work7.jpg" alt="Poppify poster" loading="lazy"></a>
-          </div>
-          <div style="display:flex; gap:0.7rem; flex-wrap:wrap;">
-            <a href="hobby.html" class="btn btn-outline" style="font-size:0.82rem;">View All Work</a>
-            <a href="https://www.instagram.com/vectory.gd/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.82rem;">@vectory.gd</a>
-          </div>
         </main>
       </div>
     </section>
+
   </div>
 
-  <footer><strong>Fayza Hassan</strong> &nbsp;·&nbsp; Built with HTML, CSS &amp; JavaScript &nbsp;·&nbsp; 2026</footer>
+  <footer>
+    <strong>Fayza Hassan</strong> &nbsp;·&nbsp; Built with HTML, CSS & JavaScript &nbsp;·&nbsp; 2026
+  </footer>
+
   <script src="script.js"></script>
+
 </body>
 </html>
