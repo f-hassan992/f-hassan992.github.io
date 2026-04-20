@@ -650,7 +650,7 @@
         <!-- Work 7 -->
         <div class="img-card" onclick="selectDesign('work7')" id="card-work7">
           <div class="check">&#10003;</div>
-          <img src="work7.jpg" alt="Poppify brand poster" loading="lazy">
+          <img src="work7.jpg" alt="Aisha Architect blueprints" loading="lazy">
           <div class="img-card-label">
             <div class="img-title">Poppify Poster</div>
             <div class="img-sub">Brand Poster · Typography</div>
@@ -827,52 +827,37 @@
       },
       work7: {
         img: 'work7.jpg',
-        alt: 'Poppify brand poster',
+        alt: 'Aisha Architect branding',
         colors: [
-          { hex: '#D42B2B', role: 'Background bold red' },
-          { hex: '#F5ECD5', role: 'Logo text cream' },
-          { hex: '#8B0000', role: 'Logo circle dark red' },
-          { hex: '#FFFFFF', role: 'Tagline & details' },
-          { hex: 'rgba(255,255,255,0.08)', role: 'Subtle shape overlay' }
+          { hex: '#C8C4B8', role: 'Background warm gray' },
+          { hex: '#F5F5F0', role: 'Logo mark light cream' },
+          { hex: '#8C8878', role: 'Accent muted taupe' },
+          { hex: '#FFFFFF', role: 'Logo text white' }
         ],
-        render: '<div class="preview-work7">' +
-          '<div class="pop-est">Est 2023</div>' +
-          '<div class="pop-logo-circle">p</div>' +
-          '<div class="pop-name">poppify</div>' +
-          '<div class="pop-tagline">Baked &nbsp;·&nbsp; Low Sugar &nbsp;·&nbsp; Natural Flavor</div>' +
-        '</div>',
+        render: '<div class="preview-aisha"><div class="aisha-inner"><div class="aisha-logo-wrap"><div class="aisha-a">A</div></div><div class="aisha-title">Aisha<br>Architect</div></div></div>',
         code:
-'<span class="cm">/* HTML */</span>\n' +
-'<span class="kw">&lt;div</span> <span class="attr">class</span>=<span class="val">"poster"</span><span class="kw">&gt;</span>\n' +
-'  <span class="kw">&lt;p</span> <span class="attr">class</span>=<span class="val">"est"</span><span class="kw">&gt;</span><span class="tx">Est 2023</span><span class="kw">&lt;/p&gt;</span>\n' +
-'  <span class="kw">&lt;div</span> <span class="attr">class</span>=<span class="val">"logo-circle"</span><span class="kw">&gt;</span><span class="tx">p</span><span class="kw">&lt;/div&gt;</span>\n' +
-'  <span class="kw">&lt;h1</span> <span class="attr">class</span>=<span class="val">"brand"</span><span class="kw">&gt;</span><span class="tx">poppify</span><span class="kw">&lt;/h1&gt;</span>\n' +
-'  <span class="kw">&lt;p</span> <span class="attr">class</span>=<span class="val">"tagline"</span><span class="kw">&gt;</span><span class="tx">Baked · Low Sugar</span><span class="kw">&lt;/p&gt;</span>\n' +
-'<span class="kw">&lt;/div&gt;</span>\n\n' +
-'<span class="cm">/* CSS */</span>\n' +
-'<span class="prop">.poster</span> {\n' +
-'  <span class="attr">background</span>: <span class="hex">#D42B2B</span>;\n' +
-'  <span class="attr">text-align</span>: <span class="val">center</span>;\n' +
-'  <span class="attr">padding</span>: <span class="num">2rem</span>;\n' +
-'  <span class="attr">border-radius</span>: <span class="num">12px</span>;\n' +
+'<span class="cm">/* Background */</span>\n' +
+'<span class="prop">.card</span> {\n' +
+'  <span class="attr">background</span>: <span class="hex">#C8C4B8</span>;\n' +
+'  <span class="attr">display</span>: <span class="val">flex</span>;\n' +
+'  <span class="attr">align-items</span>: <span class="val">center</span>;\n' +
+'  <span class="attr">justify-content</span>: <span class="val">center</span>;\n' +
 '}\n\n' +
+'<span class="cm">/* Logo box */</span>\n' +
+'<span class="prop">.logo-box</span> {\n' +
+'  <span class="attr">border</span>: <span class="num">1.5px solid</span>\n' +
+'    <span class="hex">rgba(255,255,255,0.4)</span>;\n' +
+'  <span class="attr">border-radius</span>: <span class="num">4px</span>;\n' +
+'  <span class="attr">padding</span>: <span class="num">0.5rem</span>;\n' +
+'}\n\n' +
+'<span class="cm">/* Brand name */</span>\n' +
 '<span class="prop">.brand</span> {\n' +
 '  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n' +
-'  <span class="attr">font-size</span>: <span class="num">2.5rem</span>;\n' +
-'  <span class="attr">font-weight</span>: <span class="num">900</span>;\n' +
-'  <span class="attr">color</span>: <span class="hex">#F5ECD5</span>;\n' +
-'  <span class="attr">letter-spacing</span>: <span class="num">-1px</span>;\n' +
-'}\n\n' +
-'<span class="prop">.logo-circle</span> {\n' +
-'  <span class="attr">background</span>: <span class="hex">#8B0000</span>;\n' +
-'  <span class="attr">border-radius</span>: <span class="num">50%</span>;\n' +
-'  <span class="attr">width</span>: <span class="num">28px</span>;\n' +
-'  <span class="attr">height</span>: <span class="num">28px</span>;\n' +
-'  <span class="attr">margin</span>: <span class="num">0 auto</span>;\n' +
+'  <span class="attr">letter-spacing</span>: <span class="num">3px</span>;\n' +
+'  <span class="attr">text-transform</span>: <span class="val">uppercase</span>;\n' +
+'  <span class="attr">color</span>: <span class="hex">#FFFFFF</span>;\n' +
 '}'
-      }
-
-    };
+      };
 
     /* ============================================
        SELECT A DESIGN
