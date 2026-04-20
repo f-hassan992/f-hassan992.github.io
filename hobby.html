@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fayza Hassan — Graphic Design</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ======= Intro section ======= */
+    .intro-block {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 1rem 3rem 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .intro-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+    .intro-text h2 em {
+      font-style: italic;
+      color: var(--electric);
+    }
+    .intro-text p {
+      font-size: 0.93rem;
+      color: var(--text-sub);
+      line-height: 1.85;
+    }
+
+    /* Years in design stat box */
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .stat-item {
+      background: var(--off-white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.8rem;
+      transition: var(--transition);
+    }
+    .stat-item:hover {
+      border-color: rgba(114,38,255,0.2);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--electric);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ======= Principles ======= */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .principle-card {
+      background: var(--off-white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 1.4rem;
+      transition: var(--transition);
+    }
+    .principle-card:hover {
+      border-color: rgba(114,38,255,0.25);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-3px);
+    }
+    .principle-letter {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--electric);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+    .principle-card h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+    .principle-card p {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ======= Color theory — flip cards ======= */
+    .theory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+    .flip-card {
+      height: 170px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.3rem;
+      text-align: center;
+      border: 1px solid var(--mid-gray);
+    }
+    .flip-front { background: var(--off-white); }
+    .flip-back {
+      background: var(--white);
+      border-color: rgba(114,38,255,0.2);
+      transform: rotateY(180deg);
+    }
+    .flip-front .flip-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+    .flip-hint {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    .flip-back p {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ======= Palette swatches ======= */
+    .palette-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+    .swatch {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 4px;
+      font-family: var(--font-code);
+      font-size: 0.5rem;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .swatch:hover { transform: scale(1.12); box-shadow: var(--shadow-md); }
+    .swatch-name {
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* ======= Tools table ======= */
+    .tools-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    .tools-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--mid-gray);
+    }
+    .tools-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--light-gray);
+      color: var(--text-sub);
+      vertical-align: top;
+    }
+    .tools-table tr:last-child td { border-bottom: none; }
+    .tools-table tr:hover td { background: var(--off-white); }
+    .tool-name { font-weight: 600; color: var(--text-main); }
+
+    /* ======= Process steps ======= */
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.2rem;
+      align-items: start;
+      padding: 1.2rem 1.4rem;
+      background: var(--off-white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+    .process-step:hover {
+      border-color: rgba(114,38,255,0.2);
+      box-shadow: var(--shadow-sm);
+    }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--electric);
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .step-content h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+    .step-content p {
+      font-size: 0.83rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ======= Responsive ======= */
+    @media (max-width: 768px) {
+      .intro-block {
+        grid-template-columns: 1fr;
+        padding: 1rem 1.5rem 2rem;
+        gap: 2rem;
+      }
+      .principles-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .principles-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ======= Portfolio grid ======= */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .portfolio-item {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--mid-gray);
+      background: var(--off-white);
+      transition: var(--transition);
+    }
+    .portfolio-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+      border-color: rgba(114,38,255,0.2);
+    }
+    .portfolio-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.04);
+    }
+    .portfolio-caption {
+      padding: 0.9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .portfolio-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .portfolio-cat {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 768px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">Fayza <span>Hassan</span></a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Resume</a></li>
+      <li><a href="hobby.html">Design</a></li>
+      <li><a href="html-cheatsheet.html">HTML Guide</a></li>
+      <li><a href="design-to-code.html">Design to Code</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero -->
+    <div class="page-hero" style="padding-bottom:0.5rem;">
+      <p class="eyebrow">Hobby & Interest</p>
+      <h1>Graphic <em>Design</em></h1>
+      <div class="accent-line"></div>
+      <p>Six years of designing — and still as curious about it as day one.</p>
+    </div>
+
+    <!-- Intro -->
+    <div class="intro-block">
+      <div class="intro-text animate-in">
+        <h2>Design is the space between<br><em>an idea and its impact.</em></h2>
+        <p>
+          For me, graphic design has never been just about making things look good.
+          It is about making things feel right — choosing the color that says the right thing,
+          the typeface that carries the right tone, the layout that guides without forcing.
+          Since 2019, this practice has been my creative home, and it continues to shape how
+          I see every problem I encounter.
+        </p>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-item animate-in">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Years in Graphic Design</div>
+        </div>
+        <div class="stat-item animate-in">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Years Creating Design Content</div>
+        </div>
+        <div class="stat-item animate-in">
+          <div class="stat-number">Global</div>
+          <div class="stat-label">Clients from Multiple Countries</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Principles -->
+    <section>
+      <div class="section-label">Core Design Principles</div>
+      <div class="principles-grid">
+
+        <div class="principle-card animate-in">
+          <div class="principle-letter">B</div>
+          <h3>Balance</h3>
+          <p>Visual balance gives a design its sense of stability. Symmetry feels formal;
+             asymmetry feels dynamic. Both are valid when used with intention.</p>
+        </div>
+
+        <div class="principle-card animate-in">
+          <div class="principle-letter">C</div>
+          <h3>Contrast</h3>
+          <p>Contrast directs attention. Without it, everything competes and nothing wins.
+             The highest contrast element is always what the eye finds first.</p>
+        </div>
+
+        <div class="principle-card animate-in">
+          <div class="principle-letter">R</div>
+          <h3>Repetition</h3>
+          <p>Repeating colors, shapes, and type builds visual identity. It is what
+             makes a brand recognizable across every touchpoint.</p>
+        </div>
+
+        <div class="principle-card animate-in">
+          <div class="principle-letter">A</div>
+          <h3>Alignment</h3>
+          <p>Nothing should be placed by accident. Alignment creates invisible
+             connections between elements that make a layout feel organized.</p>
+        </div>
+
+        <div class="principle-card animate-in">
+          <div class="principle-letter">P</div>
+          <h3>Proximity</h3>
+          <p>Related items belong together. The space between elements
+             communicates relationship — closeness means connection.</p>
+        </div>
+
+        <div class="principle-card animate-in">
+          <div class="principle-letter">S</div>
+          <h3>Space</h3>
+          <p>White space is not empty — it is breathing room. It gives
+             content clarity and prevents a design from feeling crowded.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Color Theory -->
+    <section>
+      <div class="section-label">Color Theory — Hover to Explore</div>
+      <div class="theory-grid">
+
+        <div class="flip-card animate-in">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-title">Primary Colors</div>
+              <p class="flip-hint">hover to learn</p>
+            </div>
+            <div class="flip-back">
+              <p>Red, Blue, and Yellow are the foundation. They cannot be mixed from
+                 any other colors — everything else derives from them.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card animate-in">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-title">Secondary Colors</div>
+              <p class="flip-hint">hover to learn</p>
+            </div>
+            <div class="flip-back">
+              <p>Mix two primaries and you create a secondary color. Red + Yellow = Orange,
+                 Blue + Yellow = Green, Red + Blue = Purple.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card animate-in">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-title">Warm vs Cool</div>
+              <p class="flip-hint">hover to learn</p>
+            </div>
+            <div class="flip-back">
+              <p>Warm colors create energy and urgency. Cool colors communicate
+                 calm and trust. Both can coexist when balanced thoughtfully.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card animate-in">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-title">Color Harmony</div>
+              <p class="flip-hint">hover to learn</p>
+            </div>
+            <div class="flip-back">
+              <p>Complementary colors (opposite on the wheel) create contrast.
+                 Analogous colors (side by side) create cohesion and flow.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Palettes -->
+    <section>
+      <div class="section-label">Palettes I Work With</div>
+      <div class="card animate-in">
+        <p class="swatch-name">Cosmic Space — this website's palette</p>
+        <div class="palette-row">
+          <div class="swatch" style="background:#010030; color:#87F5F5;" title="Copy #010030">#010030</div>
+          <div class="swatch" style="background:#160078; color:#87F5F5;" title="Copy #160078">#160078</div>
+          <div class="swatch" style="background:#7226FF; color:#fff;"    title="Copy #7226FF">#7226FF</div>
+          <div class="swatch" style="background:#0BBCB8; color:#010030;" title="Copy #0BBCB8">#0BBCB8</div>
+          <div class="swatch" style="background:#87F5F5; color:#010030;" title="Copy #87F5F5">#87F5F5</div>
+          <div class="swatch" style="background:#FFE5F1; color:#010030;" title="Copy #FFE5F1">#FFE5F1</div>
+        </div>
+
+        <p class="swatch-name" style="margin-top:1.5rem;">Warm Neutral</p>
+        <div class="palette-row">
+          <div class="swatch" style="background:#1C1917; color:#f5f0eb;" title="Copy #1C1917">#1C1917</div>
+          <div class="swatch" style="background:#78350F; color:#fde68a;" title="Copy #78350F">#78350F</div>
+          <div class="swatch" style="background:#D97706; color:#fff;"    title="Copy #D97706">#D97706</div>
+          <div class="swatch" style="background:#FDE68A; color:#1C1917;" title="Copy #FDE68A">#FDE68A</div>
+          <div class="swatch" style="background:#FEF3C7; color:#1C1917;" title="Copy #FEF3C7">#FEF3C7</div>
+        </div>
+
+        <p style="font-size:0.75rem; color:var(--text-muted); margin-top:1.2rem;">
+          Click any swatch to copy its hex code.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section>
+      <div class="section-label">Tools I Use</div>
+      <div class="card animate-in">
+        <table class="tools-table">
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Category</th>
+              <th>Used For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tool-name">Adobe Illustrator</span></td>
+              <td>Vector Design</td>
+              <td>Logos, icons, brand identity, illustrations</td>
+            </tr>
+            <tr>
+              <td><span class="tool-name">Adobe Photoshop</span></td>
+              <td>Raster / Photo</td>
+              <td>Photo editing, compositing, digital art</td>
+            </tr>
+            <tr>
+              <td><span class="tool-name">Figma</span></td>
+              <td>UI / UX</td>
+              <td>App mockups, wireframes, interactive prototypes</td>
+            </tr>
+            <tr>
+              <td><span class="tool-name">Canva</span></td>
+              <td>Quick Layouts</td>
+              <td>Social content, presentations, flyers</td>
+            </tr>
+            <tr>
+              <td><span class="tool-name">VS Code</span></td>
+              <td>Code Editor</td>
+              <td>Web design with HTML, CSS, JavaScript</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Design Process -->
+    <section>
+      <div class="section-label">My Design Process</div>
+      <div class="process-list">
+
+        <div class="process-step animate-in">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Research and Discovery</h4>
+            <p>Understand the client, the audience, and the goal. Collect references
+               and define the visual direction before any design work begins.</p>
+          </div>
+        </div>
+
+        <div class="process-step animate-in">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Concept and Sketching</h4>
+            <p>Explore several ideas quickly — on paper first. The best solution
+               rarely comes first; quantity leads to quality.</p>
+          </div>
+        </div>
+
+        <div class="process-step animate-in">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Digital Execution</h4>
+            <p>Bring the strongest concept into the tool. Refine color, type,
+               spacing, and composition until every element feels right.</p>
+          </div>
+        </div>
+
+        <div class="process-step animate-in">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Review and Refine</h4>
+            <p>Step away, then return. Incorporate feedback and improve.
+               Good design is always iterative — rarely perfect on the first pass.</p>
+          </div>
+        </div>
+
+        <div class="process-step animate-in">
+          <div class="step-num">05</div>
+          <div class="step-content">
+            <h4>Deliver and Document</h4>
+            <p>Export in the correct formats. Document the design system —
+               colors, fonts, spacing — so the work remains consistent over time.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===== Portfolio Work ===== -->
+    <section>
+      <div class="section-label">Selected Work</div>
+
+      <div style="margin-bottom: 1.8rem; display: flex; align-items: center; gap: 1rem;">
+        <a href="https://www.instagram.com/vectory.gd/"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="display:inline-flex; align-items:center; gap:0.5rem;
+                  color: var(--electric); font-size:0.88rem; font-weight:600;
+                  text-decoration:none; border:1px solid rgba(114,38,255,0.25);
+                  padding: 0.45rem 1.1rem; border-radius:50px;
+                  background: rgba(114,38,255,0.05);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          @vectory.gd
+        </a>
+        <span style="font-size:0.82rem; color:var(--text-muted);">View full portfolio on Instagram</span>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work1.jpg" alt="Crumble and Flake bakery branding" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">The Crumble &amp; Flake</span>
+            <span class="portfolio-cat">Brand Identity &middot; Photography</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work2.jpg" alt="CF monogram logo" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">C&amp;F Monogram</span>
+            <span class="portfolio-cat">Logo Design</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work3.jpg" alt="Crumble and Flake wordmark" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Wordmark Typography</span>
+            <span class="portfolio-cat">Typography &middot; Branding</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work4.jpg" alt="Poppify salty savory packaging" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Poppify — Salty Savory</span>
+            <span class="portfolio-cat">Packaging Design</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work5.jpg" alt="Poppify zesty chili packaging" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Poppify — Zesty Chili</span>
+            <span class="portfolio-cat">Packaging Design</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work6.jpg" alt="Popcorn brand logo" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Snack in Style</span>
+            <span class="portfolio-cat">Logo &middot; Brand Mark</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work7.jpg" alt="Poppify brand poster" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Poppify Brand Poster</span>
+            <span class="portfolio-cat">Poster &middot; Visual Identity</span>
+          </div>
+        </div>
+    <div class="portfolio-item animate-in">
+          <img src="images/work8.jpg" alt="Aisha Architect workspace" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Aisha Architect</span>
+            <span class="portfolio-cat">Brand Identity &middot; Photography</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item animate-in">
+          <img src="images/work9.jpg" alt="Aisha Architect logo mark" loading="lazy">
+          <div class="portfolio-caption">
+            <span class="portfolio-title">Aisha Architect</span>
+            <span class="portfolio-cat">Logo Design</span>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <strong>Fayza Hassan</strong> &nbsp;·&nbsp; Built with HTML, CSS & JavaScript &nbsp;·&nbsp; 2026
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* Flip cards — toggle on click for mobile support */
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+
+    /* Swatch copy on click */
+    document.querySelectorAll('.swatch').forEach(swatch => {
+      swatch.style.cursor = 'pointer';
+      swatch.addEventListener('click', () => {
+        const hex = swatch.title.replace('Copy ', '');
+        navigator.clipboard.writeText(hex).then(() => {
+          const orig = swatch.textContent;
+          swatch.textContent = 'Copied';
+          swatch.style.fontSize = '0.6rem';
+          setTimeout(() => {
+            swatch.textContent = orig;
+            swatch.style.fontSize = '';
+          }, 1200);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
