@@ -7,61 +7,15 @@
   <link rel="stylesheet" href="style.css" />
   <style>
 
-    /* ============================================
-       PAGE LAYOUT
-    ============================================ */
-
     .dtc-page {
       max-width: 1060px;
       margin: 0 auto;
-      padding: 4rem 3rem 5rem;
+      padding: 4rem 2rem 5rem;
     }
 
-    .dtc-page .eyebrow {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--electric);
-      margin-bottom: 0.7rem;
-    }
-
-    .dtc-page h1 {
-      font-family: var(--font-display);
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      font-weight: 400;
-      color: var(--text-main);
-      line-height: 1.2;
-      margin-bottom: 0.8rem;
-    }
-
-    .dtc-page h1 em {
-      font-style: italic;
-      color: var(--electric);
-    }
-
-    .dtc-page .intro-p {
-      font-size: 0.93rem;
-      color: var(--text-sub);
-      max-width: 540px;
-      line-height: 1.8;
-      margin-bottom: 3rem;
-    }
-
-    .accent-line {
-      width: 48px;
-      height: 3px;
-      background: var(--grad-line);
-      border-radius: 3px;
-      margin: 1rem 0 1.5rem;
-    }
-
-    /* ============================================
-       STEP LABEL
-    ============================================ */
-
+    /* Step labels */
     .step-label {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -71,533 +25,260 @@
       align-items: center;
       gap: 1rem;
     }
-
     .step-label::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: var(--mid-gray);
+      background: var(--border);
     }
 
-    /* ============================================
-       STEP 1 — IMAGE PICKER
-    ============================================ */
-
+    /* Image picker grid */
     .image-picker {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-      margin-bottom: 3.5rem;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .img-card {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 2px solid var(--mid-gray);
+      border: 2px solid var(--border);
       cursor: pointer;
       transition: var(--transition);
-      background: var(--off-white);
+      background: var(--white);
     }
-
     .img-card:hover {
-      border-color: var(--electric);
+      border-color: var(--terracotta);
       box-shadow: var(--shadow-md);
       transform: translateY(-4px);
     }
-
     .img-card.selected {
-      border-color: var(--electric);
-      box-shadow: 0 0 0 3px rgba(114,38,255,0.15);
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(224,133,90,0.2);
     }
-
     .img-card img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
     }
-
-    .img-card:hover img { transform: scale(1.04); }
-
     .img-card-label {
-      padding: 0.8rem 1rem;
-      background: var(--white);
-      border-top: 1px solid var(--mid-gray);
+      padding: 0.75rem 0.9rem;
+      border-top: 1px solid var(--border);
     }
-
-    .img-card-label .img-title {
-      font-size: 0.85rem;
+    .img-title {
+      font-size: 0.83rem;
       font-weight: 600;
       color: var(--text-main);
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.1rem;
     }
-
-    .img-card-label .img-sub {
-      font-size: 0.75rem;
+    .img-sub {
+      font-size: 0.72rem;
       color: var(--text-muted);
     }
-
-    /* Selected checkmark */
-    .img-card .check {
+    .check {
       position: absolute;
-      top: 0.7rem;
-      right: 0.7rem;
-      width: 26px;
-      height: 26px;
+      top: 0.6rem; right: 0.6rem;
+      width: 24px; height: 24px;
       border-radius: 50%;
-      background: var(--electric);
+      background: var(--terracotta);
       color: white;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: scale(0.5);
+      font-size: 0.7rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.4);
       transition: var(--transition);
     }
+    .img-card.selected .check { opacity: 1; transform: scale(1); }
 
-    .img-card.selected .check {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Hint text */
     .picker-hint {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: -0.8rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
-    /* ============================================
-       STEP 2 — SPLIT VIEW (image | code)
-    ============================================ */
-
+    /* Split view */
     .split-view {
-      display: none; /* shown by JS */
-      gap: 0;
+      display: none;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--mid-gray);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-lg);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .split-view.visible {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
 
-    .split-view.visible { display: grid; grid-template-columns: 1fr 1fr; }
-
-    /* Left — original image */
     .split-image {
       position: relative;
-      background: var(--off-white);
+      background: var(--surface);
+      min-height: 380px;
     }
-
     .split-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
-
-    .split-image .side-label {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: rgba(255,255,255,0.9);
-      color: var(--text-sub);
-      padding: 0.3rem 0.7rem;
+    .side-label {
+      position: absolute; top: 0.8rem; left: 0.8rem;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      background: rgba(250,247,242,0.9);
+      color: var(--text-muted);
+      padding: 0.25rem 0.6rem;
       border-radius: 50px;
-      border: 1px solid var(--mid-gray);
+      border: 1px solid var(--border);
     }
 
-    /* Right — live code rendering */
     .split-render {
-      position: relative;
-      background: #1A1630;
-      min-height: 420px;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
+      background: #2E1F14;
+      min-height: 380px;
     }
 
-    .split-render .side-label {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.5);
-      padding: 0.3rem 0.7rem;
-      border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.1);
-      z-index: 2;
-    }
-
-    /* Toggle: show rendered result OR code text */
     .render-toggle {
       display: flex;
-      gap: 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       flex-shrink: 0;
     }
-
     .render-toggle button {
-      flex: 1;
-      background: none;
-      border: none;
+      flex: 1; background: none; border: none;
       color: rgba(255,255,255,0.4);
       font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 0.7rem;
-      cursor: pointer;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 0.65rem; cursor: pointer;
       border-bottom: 2px solid transparent;
       transition: var(--transition);
     }
-
     .render-toggle button.active {
       color: var(--teal);
       border-bottom-color: var(--teal);
     }
 
-    /* The rendered HTML preview */
     .render-preview {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      flex: 1; display: flex;
+      align-items: center; justify-content: center;
       padding: 1.5rem;
     }
-
-    /* The code view */
     .render-code {
-      display: none;
-      flex: 1;
-      padding: 1.2rem 1.5rem;
+      display: none; flex: 1;
+      padding: 1.1rem 1.4rem;
       overflow-y: auto;
     }
-
     .render-code.visible { display: block; }
-
     .render-code pre {
       font-family: var(--font-code);
-      font-size: 0.76rem;
-      line-height: 1.85;
-      color: #e2e0f0;
-      white-space: pre;
+      font-size: 0.74rem; line-height: 1.85;
+      color: #F2E8DC; white-space: pre;
     }
 
     /* Syntax colors */
-    .kw   { color: #87CEEB; }
-    .attr { color: #0BBCB8; }
-    .val  { color: #fde68a; }
+    .kw   { color: #9DC4C0; }
+    .attr { color: #F4A836; }
+    .val  { color: #E0855A; }
     .cm   { color: rgba(255,255,255,0.28); font-style: italic; }
-    .tx   { color: #e2e0f0; }
-    .prop { color: #c4b5fd; }
-    .num  { color: #fda4af; }
-    .hex  { color: #6ee7b7; }
+    .tx   { color: #F2E8DC; }
+    .prop { color: #C8A87C; }
+    .num  { color: #9DC4C0; }
+    .hex  { color: #6EBA9E; }
 
-    /* ============================================
-       THE RENDERED PREVIEWS (HTML/CSS recreations)
-    ============================================ */
-
-    /* --- Work 1: Crumble & Flake --- */
+    /* Preview cards */
     .preview-work1 {
-      width: 100%;
-      max-width: 280px;
+      width: 100%; max-width: 240px;
       background: linear-gradient(160deg, #E8E0D8 60%, #B8D4DC 100%);
-      border-radius: 12px;
-      padding: 1.5rem 1.2rem 1.2rem;
-      text-align: center;
-      font-family: Georgia, serif;
-      position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      border-radius: 12px; padding: 1.3rem 1rem;
+      text-align: center; font-family: Georgia, serif;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
+    .cf-the { font-size: 0.68rem; letter-spacing: 2px; color: #3B2D7A; margin-bottom: 0.1rem; }
+    .cf-title { font-size: 1.3rem; font-weight: 700; color: #3B2D7A; line-height: 1.1; margin-bottom: 0.9rem; }
+    .cf-pastries { display: flex; justify-content: center; gap: 0.35rem; }
+    .cf-pastry { width: 48px; height: 35px; border-radius: 50% 50% 40% 40%; background: linear-gradient(135deg,#C8803A,#8B4513); }
+    .cf-pastry.big { width: 62px; height: 44px; background: linear-gradient(135deg,#D4903A,#9B5523); }
+    .cf-pastry.pow { position:relative; overflow:hidden; }
+    .cf-pastry.pow::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,0.3); border-radius:inherit; }
+    .marble-board { width:90%; height:6px; background:linear-gradient(90deg,#D8D0C8,#C0B8B0,#D8D0C8); border-radius:3px; margin:0.4rem auto 0; }
 
-    .preview-work1 .cf-the {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      color: #3B2D7A;
-      margin-bottom: 0.1rem;
-    }
-
-    .preview-work1 .cf-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #3B2D7A;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .preview-work1 .cf-pastries {
-      display: flex;
-      justify-content: center;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-    }
-
-    .cf-pastry {
-      width: 55px;
-      height: 40px;
-      border-radius: 50% 50% 40% 40%;
-      background: linear-gradient(135deg, #C8803A, #8B4513);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    }
-
-    .cf-pastry.big {
-      width: 70px;
-      height: 48px;
-      background: linear-gradient(135deg, #D4903A, #9B5523);
-    }
-
-    .cf-pastry.powdered {
-      background: linear-gradient(135deg, #C8803A, #8B4513);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cf-pastry.powdered::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.3);
-      border-radius: inherit;
-    }
-
-    .preview-work1 .marble-board {
-      width: 90%;
-      height: 8px;
-      background: linear-gradient(90deg, #D8D0C8, #C0B8B0, #D8D0C8);
-      border-radius: 4px;
-      margin: 0.4rem auto 0;
-    }
-
-    /* --- Work 2: CF Monogram --- */
     .preview-work2 {
-      width: 100%;
-      max-width: 200px;
-      background: #F9F7EE;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      aspect-ratio: 1;
+      width: 165px; height: 165px; background: #F9F7EE;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
+    .cf-box { border: 2.5px solid #3B2D7A; padding: 0.9rem 1.1rem; display:flex; align-items:center; justify-content:center; }
+    .cf-letters { font-family: Georgia,serif; font-size: 1.9rem; font-weight: 700; color: #3B2D7A; letter-spacing: -2px; line-height:1; }
 
-    .cf-monogram-box {
-      border: 2.5px solid #3B2D7A;
-      padding: 1rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .preview-work4 {
+      width: 100%; max-width: 185px;
+      background: linear-gradient(145deg,#1A6FD4,#0A4A9C);
+      border-radius: 13px; padding: 1.3rem 1rem; text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     }
+    .pop-brand { font-family: Georgia,serif; font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 0.25rem; }
+    .pop-flavor { font-size: 0.62rem; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.85); text-transform: uppercase; margin-bottom: 0.7rem; }
+    .pop-tags { display: flex; justify-content: center; gap: 0.25rem; flex-wrap: wrap; }
+    .pop-tag { background: #3B2D7A; color: rgba(255,255,255,0.8); font-size: 0.5rem; font-weight: 600; padding: 0.18rem 0.38rem; border-radius: 3px; }
 
-    .cf-monogram-text {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #3B2D7A;
-      letter-spacing: -2px;
-      line-height: 1;
+    .preview-aisha {
+      width: 100%; max-width: 220px;
+      background: linear-gradient(145deg, #B8B4A8, #9C9890);
+      border-radius: 12px; padding: 2rem 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25); min-height: 160px;
     }
-
-    .cf-amp {
-      font-size: 1.4rem;
-      vertical-align: middle;
-      margin: 0 -2px;
+    .aisha-inner { text-align: center; }
+    .aisha-logo-wrap {
+      width: 52px; height: 52px; margin: 0 auto 0.7rem;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
     }
+    .aisha-a { font-family: Georgia, serif; font-size: 1.5rem; font-weight: 700; color: white; }
+    .aisha-title { font-family: Georgia, serif; font-size: 0.8rem; color: rgba(255,255,255,0.92); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1.6; }
 
-    /* --- Work 7: Poppify Poster --- */
-    .preview-work7 {
-      width: 100%;
-      max-width: 220px;
-      background: #D42B2B;
-      border-radius: 12px;
-      padding: 1.5rem 1.2rem;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .preview-work7::before {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 90px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50% 50% 0 0;
-    }
-
-    .preview-work7 .pop-est {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 0.5rem;
-    }
-
-    .preview-work7 .pop-logo-circle {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(139,0,0,0.6);
-      border: 1.5px solid rgba(255,255,255,0.3);
-      margin: 0 auto 0.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      font-weight: 800;
-      color: white;
-      font-family: Georgia, serif;
-    }
-
-    .preview-work7 .pop-name {
-      font-size: 2rem;
-      font-weight: 900;
-      color: #F5ECD5;
-      line-height: 1;
-      font-family: Georgia, serif;
-      letter-spacing: -1px;
-      margin-bottom: 0.7rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .preview-work7 .pop-tagline {
-      font-size: 0.62rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.85);
-      letter-spacing: 1px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ============================================
-       COLOR BREAKDOWN
-    ============================================ */
-
-    .color-breakdown {
-      display: none;
-      margin-top: 0;
-    }
-
+    /* Color chips */
+    .color-breakdown { display: none; margin-top: 1.2rem; }
     .color-breakdown.visible { display: block; }
-
-    .color-breakdown h3 {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--text-main);
-      margin-bottom: 1rem;
-    }
-
-    .color-chips {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
+    .color-breakdown h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--text-main); margin-bottom: 0.9rem; }
+    .color-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .color-chip {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 0.9rem 0.45rem 0.5rem;
-      background: var(--off-white);
-      border: 1px solid var(--mid-gray);
-      border-radius: 50px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 0.8rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.38rem 0.8rem 0.38rem 0.42rem;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 50px; cursor: pointer;
+      transition: var(--transition); font-size: 0.77rem;
     }
-
-    .color-chip:hover {
-      border-color: rgba(114,38,255,0.25);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .chip-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .chip-hex {
-      font-family: var(--font-code);
-      font-size: 0.77rem;
-      color: var(--electric);
-      font-weight: 500;
-    }
-
-    .chip-role {
-      color: var(--text-muted);
-      font-size: 0.77rem;
-    }
-
-    /* ============================================
-       COPY TOAST
-    ============================================ */
+    .color-chip:hover { border-color: rgba(224,133,90,0.35); box-shadow: var(--shadow-sm); }
+    .chip-dot { width: 15px; height: 15px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.08); }
+    .chip-hex { font-family: var(--font-code); font-size: 0.72rem; color: var(--terracotta); font-weight: 500; }
+    .chip-role { color: var(--text-muted); font-size: 0.72rem; }
 
     .copy-toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
+      position: fixed; bottom: 2rem; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: var(--text-main);
-      color: var(--white);
-      padding: 0.6rem 1.4rem;
-      border-radius: 50px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      opacity: 0;
-      transition: all 0.3s ease;
-      pointer-events: none;
-      z-index: 999;
-      white-space: nowrap;
+      background: var(--terracotta); color: white;
+      padding: 0.55rem 1.3rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 600; opacity: 0;
+      transition: all 0.3s ease; pointer-events: none;
+      z-index: 999; white-space: nowrap;
     }
-
-    .copy-toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ============================================
-       RESPONSIVE
-    ============================================ */
+    .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 768px) {
-      .dtc-page { padding: 3rem 1.5rem 4rem; }
-      .image-picker { grid-template-columns: 1fr; gap: 1rem; }
+      .dtc-page { padding: 3rem 1.2rem 4rem; }
+      .image-picker { grid-template-columns: repeat(2, 1fr); }
       .split-view.visible { grid-template-columns: 1fr; }
-      .split-image { min-height: 220px; }
-      .split-render { min-height: 360px; }
     }
 
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
-    <a class="nav-logo" href="index.html">Fayza <span style="color:var(--teal);">Hassan</span></a>
+    <a class="nav-logo" href="index.html">Fayza <span>Hassan</span></a>
     <button class="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -605,104 +286,84 @@
       <li><a href="index.html">Resume</a></li>
       <li><a href="hobby.html">Design</a></li>
       <li><a href="html-cheatsheet.html">HTML Guide</a></li>
-      <li><a href="design-to-code.html" class="active">Design to Code</a></li>
+      <li><a href="design-to-code.html">Design to Code</a></li>
     </ul>
   </nav>
 
   <div class="page-wrapper">
     <div class="dtc-page">
 
-      <!-- Hero -->
       <p class="eyebrow">Interactive Tool</p>
       <h1>Design to <em>Code</em></h1>
       <div class="accent-line"></div>
-      <p class="intro-p">
-        Every design you see was once written as code. Pick one of my real projects below
-        and see how its colors, layout, and structure translate into HTML and CSS —
-        side by side with the original.
+      <p style="font-size:0.93rem; color:var(--text-sub); max-width:540px; line-height:1.8; margin-bottom:3rem;">
+        Pick one of my real projects and see how its colors, layout, and structure
+        translate into HTML and CSS — side by side with the original.
       </p>
 
-      <!-- Step 1: Pick an image -->
       <div class="step-label">Step 1 — Choose a design</div>
 
       <div class="image-picker">
-
-        <!-- Work 1 -->
         <div class="img-card" onclick="selectDesign('work1')" id="card-work1">
           <div class="check">&#10003;</div>
-          <img src="work1.jpg" alt="Crumble and Flake bakery branding" loading="lazy">
+          <img src="work1.jpg" alt="Crumble and Flake branding" loading="lazy">
           <div class="img-card-label">
-            <div class="img-title">The Crumble &amp; Flake</div>
-            <div class="img-sub">Brand Identity · Bakery</div>
+            <div class="img-title">Crumble &amp; Flake</div>
+            <div class="img-sub">Brand Identity</div>
           </div>
         </div>
 
-        <!-- Work 2 -->
         <div class="img-card" onclick="selectDesign('work2')" id="card-work2">
           <div class="check">&#10003;</div>
           <img src="work2.jpg" alt="CF monogram logo" loading="lazy">
           <div class="img-card-label">
             <div class="img-title">C&amp;F Monogram</div>
-            <div class="img-sub">Logo Design · Minimal</div>
+            <div class="img-sub">Logo Design</div>
           </div>
         </div>
 
-        <!-- Work 4 -->
         <div class="img-card" onclick="selectDesign('work4')" id="card-work4">
           <div class="check">&#10003;</div>
-          <img src="work4.jpg" alt="Poppify salty savory packaging" loading="lazy">
+          <img src="work4.jpg" alt="Poppify salty savory" loading="lazy">
           <div class="img-card-label">
             <div class="img-title">Poppify — Salty</div>
             <div class="img-sub">Packaging Design</div>
           </div>
         </div>
 
-        <!-- Work 7 -->
         <div class="img-card" onclick="selectDesign('work7')" id="card-work7">
           <div class="check">&#10003;</div>
-          <img src="work7.jpg" alt="Aisha Architect blueprints" loading="lazy">
+          <img src="work7.jpg" alt="Aisha Architect" loading="lazy">
           <div class="img-card-label">
             <div class="img-title">Aisha Architect</div>
             <div class="img-sub">Brand Identity</div>
           </div>
         </div>
-
       </div>
 
       <p class="picker-hint">Click any design to explore its code breakdown.</p>
 
-      <!-- Step 2: Split view -->
       <div class="step-label">Step 2 — Original vs Code</div>
 
       <div class="split-view" id="split-view">
-
-        <!-- Left: original image -->
         <div class="split-image">
           <span class="side-label">Original Design</span>
-          <img id="split-img" src="" alt="Selected design">
+          <img id="split-img" src="" alt="">
         </div>
-
-        <!-- Right: code/render panel -->
         <div class="split-render">
           <div class="render-toggle">
-            <button class="active" onclick="showTab('preview', this)">Live Render</button>
-            <button onclick="showTab('code', this)">HTML / CSS</button>
+            <button class="active" onclick="showTab('preview',this)">Live Render</button>
+            <button onclick="showTab('code',this)">HTML / CSS</button>
           </div>
-
-          <!-- Rendered preview -->
           <div class="render-preview" id="tab-preview">
             <div id="render-output"></div>
           </div>
-
-          <!-- Code view -->
           <div class="render-code" id="tab-code">
             <pre id="code-output"></pre>
           </div>
         </div>
-
       </div>
 
-      <!-- Color breakdown -->
       <div class="color-breakdown" id="color-breakdown">
         <h3>Colors used in this design</h3>
         <div class="color-chips" id="color-chips"></div>
@@ -711,7 +372,6 @@
     </div>
   </div>
 
-  <!-- Copy toast -->
   <div class="copy-toast" id="copy-toast"></div>
 
   <footer>
@@ -721,120 +381,47 @@
   <script src="script.js"></script>
   <script>
 
-    /* ============================================
-       DATA — one entry per design
-    ============================================ */
-
     var designs = {
 
-      /* ---- Work 1: Crumble & Flake ---- */
       work1: {
         img: 'work1.jpg',
         alt: 'Crumble and Flake branding',
         colors: [
           { hex: '#E8E0D8', role: 'Background warm beige' },
           { hex: '#B8D4DC', role: 'Background cool blue' },
-          { hex: '#3B2D7A', role: 'Logo & text (deep navy)' },
-          { hex: '#C8803A', role: 'Pastry warm brown' },
+          { hex: '#3B2D7A', role: 'Logo and text — deep navy' },
+          { hex: '#D4903A', role: 'Pastry warm brown' },
           { hex: '#D8D0C8', role: 'Marble board' }
         ],
-        render: '<div class="preview-work1">' +
-          '<div class="cf-the">The</div>' +
-          '<div class="cf-title">Crumble<br>&amp; Flake</div>' +
-          '<div class="cf-pastries">' +
-            '<div class="cf-pastry"></div>' +
-            '<div class="cf-pastry big"></div>' +
-            '<div class="cf-pastry powdered"></div>' +
-          '</div>' +
-          '<div class="marble-board"></div>' +
-        '</div>',
-        code:
-'<span class="cm">/* Background */</span>\n' +
-'<span class="prop">.card</span> {\n' +
-'  <span class="attr">background</span>: <span class="val">linear-gradient</span>(\n' +
-'    <span class="num">160deg</span>,\n' +
-'    <span class="hex">#E8E0D8</span> <span class="num">60%</span>,\n' +
-'    <span class="hex">#B8D4DC</span> <span class="num">100%</span>\n' +
-'  );\n' +
-'  <span class="attr">border-radius</span>: <span class="num">12px</span>;\n' +
-'  <span class="attr">padding</span>: <span class="num">1.5rem</span>;\n' +
-'  <span class="attr">text-align</span>: <span class="val">center</span>;\n' +
-'}\n\n' +
-'<span class="cm">/* Logo text */</span>\n' +
-'<span class="prop">.logo-title</span> {\n' +
-'  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n' +
-'  <span class="attr">font-size</span>: <span class="num">1.5rem</span>;\n' +
-'  <span class="attr">font-weight</span>: <span class="num">700</span>;\n' +
-'  <span class="attr">color</span>: <span class="hex">#3B2D7A</span>;\n' +
-'  <span class="attr">line-height</span>: <span class="num">1.1</span>;\n' +
-'}\n\n' +
-'<span class="cm">/* Pastry shape */</span>\n' +
-'<span class="prop">.pastry</span> {\n' +
-'  <span class="attr">width</span>: <span class="num">70px</span>;\n' +
-'  <span class="attr">height</span>: <span class="num">48px</span>;\n' +
-'  <span class="attr">border-radius</span>: <span class="num">50% 50% 40% 40%</span>;\n' +
-'  <span class="attr">background</span>: <span class="val">linear-gradient</span>(\n' +
-'    <span class="num">135deg</span>,\n' +
-'    <span class="hex">#D4903A</span>,\n' +
-'    <span class="hex">#9B5523</span>\n' +
-'  );\n' +
-'}'
+        render: '<div class="preview-work1"><div class="cf-the">The</div><div class="cf-title">Crumble<br>&amp; Flake</div><div class="cf-pastries"><div class="cf-pastry"></div><div class="cf-pastry big"></div><div class="cf-pastry pow"></div></div><div class="marble-board"></div></div>',
+        code: '<span class="cm">/* Background */</span>\n<span class="prop">.card</span> {\n  <span class="attr">background</span>: <span class="val">linear-gradient</span>(\n    <span class="num">160deg</span>,\n    <span class="hex">#E8E0D8</span> <span class="num">60%</span>,\n    <span class="hex">#B8D4DC</span> <span class="num">100%</span>\n  );\n  <span class="attr">border-radius</span>: <span class="num">12px</span>;\n}\n\n<span class="cm">/* Logo */</span>\n<span class="prop">.logo</span> {\n  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n  <span class="attr">font-size</span>: <span class="num">1.4rem</span>;\n  <span class="attr">color</span>: <span class="hex">#3B2D7A</span>;\n}\n\n<span class="cm">/* Pastry */</span>\n<span class="prop">.pastry</span> {\n  <span class="attr">border-radius</span>: <span class="num">50% 50% 40% 40%</span>;\n  <span class="attr">background</span>: <span class="val">linear-gradient</span>(\n    <span class="hex">#D4903A</span>, <span class="hex">#9B5523</span>\n  );\n}'
       },
 
-      /* ---- Work 2: CF Monogram ---- */
       work2: {
         img: 'work2.jpg',
         alt: 'CF monogram logo',
         colors: [
           { hex: '#F9F7EE', role: 'Background cream' },
-          { hex: '#3B2D7A', role: 'Logo & border (deep navy)' },
-          { hex: '#FFFFFF', role: 'Negative space (white)' }
+          { hex: '#3B2D7A', role: 'Logo and border — deep navy' },
+          { hex: '#FFFFFF', role: 'Negative space' }
         ],
-        render: '<div class="preview-work2">' +
-          '<div class="cf-monogram-box">' +
-            '<div class="cf-monogram-text">C<span class="cf-amp">&amp;</span>F</div>' +
-          '</div>' +
-        '</div>',
-        code:
-'<span class="cm">/* HTML */</span>\n' +
-'<span class="kw">&lt;div</span> <span class="attr">class</span>=<span class="val">"page"</span><span class="kw">&gt;</span>\n' +
-'  <span class="kw">&lt;div</span> <span class="attr">class</span>=<span class="val">"monogram-box"</span><span class="kw">&gt;</span>\n' +
-'    <span class="kw">&lt;span&gt;</span><span class="tx">C&amp;F</span><span class="kw">&lt;/span&gt;</span>\n' +
-'  <span class="kw">&lt;/div&gt;</span>\n' +
-'<span class="kw">&lt;/div&gt;</span>\n\n' +
-'<span class="cm">/* CSS */</span>\n' +
-'<span class="prop">.page</span> {\n' +
-'  <span class="attr">background</span>: <span class="hex">#F9F7EE</span>;\n' +
-'  <span class="attr">display</span>: <span class="val">flex</span>;\n' +
-'  <span class="attr">align-items</span>: <span class="val">center</span>;\n' +
-'  <span class="attr">justify-content</span>: <span class="val">center</span>;\n' +
-'  <span class="attr">min-height</span>: <span class="num">100vh</span>;\n' +
-'}\n\n' +
-'<span class="prop">.monogram-box</span> {\n' +
-'  <span class="attr">border</span>: <span class="num">2.5px</span> <span class="val">solid</span> <span class="hex">#3B2D7A</span>;\n' +
-'  <span class="attr">padding</span>: <span class="num">1rem 1.2rem</span>;\n' +
-'}\n\n' +
-'<span class="prop">.monogram-box span</span> {\n' +
-'  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n' +
-'  <span class="attr">font-size</span>: <span class="num">2.2rem</span>;\n' +
-'  <span class="attr">font-weight</span>: <span class="num">700</span>;\n' +
-'  <span class="attr">color</span>: <span class="hex">#3B2D7A</span>;\n' +
-'  <span class="attr">letter-spacing</span>: <span class="num">-2px</span>;\n' +
-'}'
+        render: '<div class="preview-work2"><div class="cf-box"><div class="cf-letters">C&amp;F</div></div></div>',
+        code: '<span class="cm">/* Page */</span>\n<span class="prop">.page</span> {\n  <span class="attr">background</span>: <span class="hex">#F9F7EE</span>;\n  <span class="attr">display</span>: <span class="val">flex</span>;\n  <span class="attr">align-items</span>: <span class="val">center</span>;\n  <span class="attr">justify-content</span>: <span class="val">center</span>;\n  <span class="attr">min-height</span>: <span class="num">100vh</span>;\n}\n\n<span class="cm">/* Box */</span>\n<span class="prop">.box</span> {\n  <span class="attr">border</span>: <span class="num">2.5px solid</span> <span class="hex">#3B2D7A</span>;\n  <span class="attr">padding</span>: <span class="num">1rem 1.2rem</span>;\n}\n\n<span class="prop">.box span</span> {\n  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n  <span class="attr">font-size</span>: <span class="num">2rem</span>;\n  <span class="attr">color</span>: <span class="hex">#3B2D7A</span>;\n}'
       },
 
-      /* ---- Work 7: Poppify Poster ---- */
       work4: {
-        img: 'work4.jpg', alt: 'Poppify salty savory packaging',
-        colors:[
-          {hex:'#1A6FD4',role:'Bag top — bright blue'},
-          {hex:'#0A4A9C',role:'Bag bottom — deep blue'},
-          {hex:'#3B2D7A',role:'Tag badges — dark purple'},
-          {hex:'#FFFFFF',role:'Logo and text — white'}
+        img: 'work4.jpg',
+        alt: 'Poppify salty savory packaging',
+        colors: [
+          { hex: '#1A6FD4', role: 'Bag top — bright blue' },
+          { hex: '#0A4A9C', role: 'Bag bottom — deep blue' },
+          { hex: '#3B2D7A', role: 'Tag badges — dark purple' },
+          { hex: '#FFFFFF', role: 'Logo and text — white' }
         ],
-        render:'<div class="preview-work4"><div class="pop-brand">poppify</div><div class="pop-flavor">Salty Savory</div><div class="pop-tags"><span class="pop-tag">baked</span><span class="pop-tag">low sugar</span><span class="pop-tag">natural</span></div></div>',
-        code:'<span class=\"cm\">/* Bag */</span>\n<span class=\"prop\">.bag</span> {\n  <span class=\"attr\">background</span>: <span class=\"val\">linear-gradient</span>(\n    <span class=\"hex\">#1A6FD4</span>, <span class=\"hex\">#0A4A9C</span>\n  );\n  <span class=\"attr\">border-radius</span>: <span class=\"num\">14px</span>;\n}'
+        render: '<div class="preview-work4"><div class="pop-brand">poppify</div><div class="pop-flavor">Salty Savory</div><div class="pop-tags"><span class="pop-tag">baked</span><span class="pop-tag">low sugar</span><span class="pop-tag">natural</span></div></div>',
+        code: '<span class="cm">/* Bag */</span>\n<span class="prop">.bag</span> {\n  <span class="attr">background</span>: <span class="val">linear-gradient</span>(\n    <span class="num">145deg</span>,\n    <span class="hex">#1A6FD4</span>,\n    <span class="hex">#0A4A9C</span>\n  );\n  <span class="attr">border-radius</span>: <span class="num">14px</span>;\n  <span class="attr">padding</span>: <span class="num">1.5rem</span>;\n}\n\n<span class="cm">/* Brand name */</span>\n<span class="prop">.brand</span> {\n  <span class="attr">font-size</span>: <span class="num">1.6rem</span>;\n  <span class="attr">font-weight</span>: <span class="num">900</span>;\n  <span class="attr">color</span>: <span class="hex">#FFFFFF</span>;\n}\n\n<span class="cm">/* Tag */</span>\n<span class="prop">.tag</span> {\n  <span class="attr">background</span>: <span class="hex">#3B2D7A</span>;\n  <span class="attr">color</span>: <span class="hex">#FFFFFF</span>;\n  <span class="attr">border-radius</span>: <span class="num">3px</span>;\n}'
       },
+
       work7: {
         img: 'work7.jpg',
         alt: 'Aisha Architect branding',
@@ -845,95 +432,53 @@
           { hex: '#FFFFFF', role: 'Logo text white' }
         ],
         render: '<div class="preview-aisha"><div class="aisha-inner"><div class="aisha-logo-wrap"><div class="aisha-a">A</div></div><div class="aisha-title">Aisha<br>Architect</div></div></div>',
-        code:
-'<span class="cm">/* Background */</span>\n' +
-'<span class="prop">.card</span> {\n' +
-'  <span class="attr">background</span>: <span class="hex">#C8C4B8</span>;\n' +
-'  <span class="attr">display</span>: <span class="val">flex</span>;\n' +
-'  <span class="attr">align-items</span>: <span class="val">center</span>;\n' +
-'  <span class="attr">justify-content</span>: <span class="val">center</span>;\n' +
-'}\n\n' +
-'<span class="cm">/* Logo box */</span>\n' +
-'<span class="prop">.logo-box</span> {\n' +
-'  <span class="attr">border</span>: <span class="num">1.5px solid</span>\n' +
-'    <span class="hex">rgba(255,255,255,0.4)</span>;\n' +
-'  <span class="attr">border-radius</span>: <span class="num">4px</span>;\n' +
-'  <span class="attr">padding</span>: <span class="num">0.5rem</span>;\n' +
-'}\n\n' +
-'<span class="cm">/* Brand name */</span>\n' +
-'<span class="prop">.brand</span> {\n' +
-'  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n' +
-'  <span class="attr">letter-spacing</span>: <span class="num">3px</span>;\n' +
-'  <span class="attr">text-transform</span>: <span class="val">uppercase</span>;\n' +
-'  <span class="attr">color</span>: <span class="hex">#FFFFFF</span>;\n' +
-'}'
+        code: '<span class="cm">/* Background */</span>\n<span class="prop">.card</span> {\n  <span class="attr">background</span>: <span class="hex">#C8C4B8</span>;\n  <span class="attr">display</span>: <span class="val">flex</span>;\n  <span class="attr">align-items</span>: <span class="val">center</span>;\n  <span class="attr">justify-content</span>: <span class="val">center</span>;\n}\n\n<span class="cm">/* Logo box */</span>\n<span class="prop">.logo-box</span> {\n  <span class="attr">border</span>: <span class="num">1.5px solid</span>\n    <span class="hex">rgba(255,255,255,0.4)</span>;\n  <span class="attr">border-radius</span>: <span class="num">4px</span>;\n  <span class="attr">padding</span>: <span class="num">0.5rem</span>;\n}\n\n<span class="cm">/* Brand name */</span>\n<span class="prop">.brand</span> {\n  <span class="attr">font-family</span>: <span class="val">Georgia, serif</span>;\n  <span class="attr">letter-spacing</span>: <span class="num">3px</span>;\n  <span class="attr">text-transform</span>: <span class="val">uppercase</span>;\n  <span class="attr">color</span>: <span class="hex">#FFFFFF</span>;\n}'
       }
 
     };
 
-    /* ============================================
-       SELECT A DESIGN
-    ============================================ */
-
-    var currentDesign = null;
-
     function selectDesign(key) {
       var data = designs[key];
       if (!data) { return; }
-      currentDesign = key;
 
-      /* Update card selection state */
       document.querySelectorAll('.img-card').forEach(function(c) {
         c.classList.remove('selected');
       });
       document.getElementById('card-' + key).classList.add('selected');
 
-      /* Set original image */
-      var img = document.getElementById('split-img');
-      img.src = data.img;
-      img.alt = data.alt;
-
-      /* Set rendered preview */
+      document.getElementById('split-img').src = data.img;
+      document.getElementById('split-img').alt = data.alt;
       document.getElementById('render-output').innerHTML = data.render;
-
-      /* Set code output */
       document.getElementById('code-output').innerHTML = data.code;
 
-      /* Build color chips */
       var chipsEl = document.getElementById('color-chips');
       chipsEl.innerHTML = '';
       data.colors.forEach(function(c) {
         var chip = document.createElement('div');
         chip.className = 'color-chip';
-        chip.title = 'Click to copy ' + c.hex;
         chip.innerHTML =
-          '<div class="chip-dot" style="background:' + c.hex + ';"></div>' +
+          '<div class="chip-dot" style="background:' + c.hex + '"></div>' +
           '<span class="chip-hex">' + c.hex + '</span>' +
           '<span class="chip-role">— ' + c.role + '</span>';
         chip.addEventListener('click', function() { copyHex(c.hex); });
         chipsEl.appendChild(chip);
       });
 
-      /* Show split view and color breakdown */
       document.getElementById('split-view').classList.add('visible');
       document.getElementById('color-breakdown').classList.add('visible');
 
-      /* Reset to preview tab */
       showTabByName('preview');
+      document.querySelectorAll('.render-toggle button').forEach(function(b, i) {
+        b.classList.toggle('active', i === 0);
+      });
 
-      /* Smooth scroll to result */
       setTimeout(function() {
         document.getElementById('split-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
 
-    /* ============================================
-       TAB TOGGLE (Live Render / Code)
-    ============================================ */
-
     function showTab(name, btn) {
       showTabByName(name);
-      /* Update button states */
       document.querySelectorAll('.render-toggle button').forEach(function(b) {
         b.classList.remove('active');
       });
@@ -941,28 +486,17 @@
     }
 
     function showTabByName(name) {
-      var preview = document.getElementById('tab-preview');
-      var code    = document.getElementById('tab-code');
-      if (name === 'preview') {
-        preview.style.display = 'flex';
-        code.classList.remove('visible');
-      } else {
-        preview.style.display = 'none';
-        code.classList.add('visible');
-      }
+      document.getElementById('tab-preview').style.display = name === 'preview' ? 'flex' : 'none';
+      document.getElementById('tab-code').classList.toggle('visible', name === 'code');
     }
-
-    /* ============================================
-       COPY HEX
-    ============================================ */
 
     function copyHex(hex) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(hex).then(function() {
-          var toast = document.getElementById('copy-toast');
-          toast.textContent = hex + ' copied';
-          toast.classList.add('show');
-          setTimeout(function() { toast.classList.remove('show'); }, 1800);
+          var t = document.getElementById('copy-toast');
+          t.textContent = hex + ' copied';
+          t.classList.add('show');
+          setTimeout(function() { t.classList.remove('show'); }, 1800);
         });
       }
     }
