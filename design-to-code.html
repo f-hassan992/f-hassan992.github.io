@@ -719,7 +719,7 @@
 
       /* ---- Work 1: Crumble & Flake ---- */
       work1: {
-        img: 'images/work1.jpg',
+        img: 'work1.jpg',
         alt: 'Crumble and Flake branding',
         colors: [
           { hex: '#E8E0D8', role: 'Background warm beige' },
@@ -773,7 +773,7 @@
 
       /* ---- Work 2: CF Monogram ---- */
       work2: {
-        img: 'images/work2.jpg',
+        img: 'work2.jpg',
         alt: 'CF monogram logo',
         colors: [
           { hex: '#F9F7EE', role: 'Background cream' },
@@ -814,8 +814,19 @@
       },
 
       /* ---- Work 7: Poppify Poster ---- */
+      work4: {
+        img: 'work4.jpg', alt: 'Poppify salty savory packaging',
+        colors:[
+          {hex:'#1A6FD4',role:'Bag top — bright blue'},
+          {hex:'#0A4A9C',role:'Bag bottom — deep blue'},
+          {hex:'#3B2D7A',role:'Tag badges — dark purple'},
+          {hex:'#FFFFFF',role:'Logo and text — white'}
+        ],
+        render:'<div class="preview-work4"><div class="pop-brand">poppify</div><div class="pop-flavor">Salty Savory</div><div class="pop-tags"><span class="pop-tag">baked</span><span class="pop-tag">low sugar</span><span class="pop-tag">natural</span></div></div>',
+        code:'<span class=\"cm\">/* Bag */</span>\n<span class=\"prop\">.bag</span> {\n  <span class=\"attr\">background</span>: <span class=\"val\">linear-gradient</span>(\n    <span class=\"hex\">#1A6FD4</span>, <span class=\"hex\">#0A4A9C</span>\n  );\n  <span class=\"attr\">border-radius</span>: <span class=\"num\">14px</span>;\n}'
+      },
       work7: {
-        img: 'images/work7.jpg',
+        img: 'work7.jpg',
         alt: 'Poppify brand poster',
         colors: [
           { hex: '#D42B2B', role: 'Background bold red' },
